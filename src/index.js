@@ -18,8 +18,8 @@ class App extends React.Component {
       (err) => this.setState({ errorMessage: err.message })
     );
   }
-
-  render() {
+  //  helper method: use this for conditional logic
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return (
         <div style={{ margin: '1rem' }}>Error: {this.state.errorMessage}</div>
@@ -30,7 +30,11 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <Spinner />;
+    return <Spinner message="Please accept location request" />;
+  }
+
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
@@ -124,3 +128,10 @@ if (module.hot) {
 //  anytime we call setState inside the parent component and update the latitude, the app component is goingn to rerender itself, which is going to cause SeasonDisplay to update as well. If the latitude value changes, the new latitude value will replace it in the seasonDisplay as well
 
 //  setState will not just rerender the component itself, but the children its showing as well
+
+//  Review ------------------------------------------------------------
+//  Class Components:
+//      1.  Easier to organize code
+//      2.  Can make use of state: makes it easier to handle user input
+//              - plus data loading events
+//      3.  Understands lifecycle events

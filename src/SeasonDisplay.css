@@ -31,3 +31,7 @@
 .summer {
   background-color: rgb(255, 202, 104);
 }
+
+.border.red {
+  border: 5px solid red;
+}
